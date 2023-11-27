@@ -1,5 +1,4 @@
 const { Product } = require("../../models/product");
-console.log(Product, 'Product');
 
 // Отримання всіх продуктів
 const getAllProducts = async (req, res) => {
