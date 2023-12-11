@@ -2,18 +2,31 @@ const { Product } = require("../../models/product");
 
 const addProduct = async (req, res) => {
   try {
-    const { name, description, price, category, subcategory, image, favorite } =
-      req.body;
-    console.log(req.body);
-
-    const newProduct = new Product({
+    const {
       name,
+      brand,
+      model,
       description,
       price,
       category,
       subcategory,
       image,
-      favorite,
+      raiting,
+      country,
+    } = req.body;
+    console.log(req.body);
+
+    const newProduct = new Product({
+      name,
+      brand,
+      model,
+      description,
+      price,
+      category,
+      subcategory,
+      image,
+      raiting,
+      country,
     });
     console.log(newProduct, "newProduct");
     // Збереження нового продукту в базі даних

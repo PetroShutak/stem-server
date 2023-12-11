@@ -7,6 +7,12 @@ const productSchema = new Schema(
     name: {
       type: String,
     },
+    brand: {
+      type: String,
+    },
+    model: {
+      type: String,
+    },
     description: {
       type: String,
     },
@@ -22,9 +28,13 @@ const productSchema = new Schema(
     image: {
       type: String,
     },
-    favorite: {
-      type: Boolean,
-      default: false,
+    raiting: {
+      type: Number,
+      enum: [1, 2, 3, 4, 5],
+    },
+    country: {
+      type: String,
+      
     },
   },
   { versionKey: false, timestamps: true }
@@ -32,21 +42,20 @@ const productSchema = new Schema(
 
 productSchema.post("save", handleMongooseError);
 
-const updateFavoriteSchema = Joi.object({
-  favorite: Joi.boolean().required(),
-});
-
 const addSchema = Joi.object({
   name: Joi.string().required(),
+  brand: Joi.string().required(),
+  model: Joi.string().required(),
   description: Joi.string().required(),
   price: Joi.number().required(),
   category: Joi.string().required(),
   subcategory: Joi.string().required(),
   image: Joi.string().required(),
-  favorite: Joi.boolean(),
+  raiting: Joi.number().required(),
+  country: Joi.string(),
 });
 
-const schemas = { addSchema, updateFavoriteSchema };
+const schemas = { addSchema };
 
 const Product = model("product", productSchema);
 
