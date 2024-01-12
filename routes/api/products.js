@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { addProduct } = require("../../controllers/products/addProduct");
 const { updateProduct } = require("../../controllers/products/updateProduct");
+const { deleteProduct } = require("../../controllers/products/deleteProduct");
 
 const {
   getProductById,
@@ -18,5 +19,7 @@ router.get("/:productId", getProductById);
 router.post("/", addProduct);
 // Роут для оновлення продукту
 router.patch("/:productId", updateProduct);
+// Роут для видалення продукту
+router.delete('/:productId', deleteProduct);
 
 module.exports = router;
