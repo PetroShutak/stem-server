@@ -2,7 +2,8 @@ const { Product } = require("../../models/product");
 
 const updateProduct = async (req, res) => {
   try {
-    const productId = req.params.id; // Assuming you have the product ID in the request parameters
+    const productId = req.params.productId;
+    console.log("productId", productId);
 
     // Check if the product exists
     const existingProduct = await Product.findById(productId);
@@ -20,7 +21,7 @@ const updateProduct = async (req, res) => {
       category,
       subcategory,
       image,
-      rating,
+      raiting,
       country,
     } = req.body;
 
@@ -32,7 +33,7 @@ const updateProduct = async (req, res) => {
     existingProduct.category = category || existingProduct.category;
     existingProduct.subcategory = subcategory || existingProduct.subcategory;
     existingProduct.image = image || existingProduct.image;
-    existingProduct.rating = rating || existingProduct.rating;
+    existingProduct.raiting = raiting || existingProduct.raiting;
     existingProduct.country = country || existingProduct.country;
 
     // Save the updated product in the database
