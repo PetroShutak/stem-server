@@ -3,7 +3,7 @@ const sendOrder = require("../../utils/sendOrder");
 const placeOrder = async (req, res) => {
   try {
     // Отримати дані з запиту (ім'я, кількість, адреса, спосіб доставки)
-    const { name, phone, payment, delivery, deliveryAddress, postOffice } =
+    const { name, phone, payment, delivery, deliveryAddress, postOffice, cartItems } =
       req.body;
     console.log("Received order data:", {
       name,
@@ -22,6 +22,7 @@ const placeOrder = async (req, res) => {
       delivery,
       deliveryAddress,
       postOffice,
+      cartItems
     });
 
     // Відповісти на клієнта

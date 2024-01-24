@@ -4,7 +4,7 @@ const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 sgMail.setApiKey(SENDGRID_API_KEY);
 
 const sendOrder = async (data) => {
-  const { name, phone, payment, delivery, deliveryAddress, postOffice } = data;
+  const { name, phone, payment, delivery, deliveryAddress, postOffice, cartItems } = data;
   //   console.log('Received order data:', data);
 
   let deliveryInfo = "";
@@ -23,7 +23,20 @@ const sendOrder = async (data) => {
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Phone:</strong> ${phone}</p>
         <p><strong>Payment Method:</strong> ${payment}</p>
-        <p><strong>${deliveryInfo}</strong></p>`,
+        <p><strong>${deliveryInfo}</strong></p>
+        <p><strong>Cart Items:</strong></p>
+        <ul>
+          ${cartItems
+            .map(
+              (item) =>
+                `<li>
+                  <p><strong>Name:</strong> ${item.name}</p>
+                  <p><strong>Quantity:</strong> ${item.quantity}</p>
+                  <p><strong>Price:</strong> ${item.price}</p>
+                </li>`
+            )
+            .join("\n")}
+        </ul>`,
   };
 
   try {
