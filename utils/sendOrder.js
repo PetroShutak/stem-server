@@ -29,6 +29,7 @@ const sendOrder = async (data) => {
     await sgMail.send(msg);
   } catch (error) {
     console.log(error);
+    throw error; 
   }
 };
 
