@@ -3,6 +3,9 @@ const router = express.Router();
 const { addProduct } = require("../../controllers/products/addProduct");
 const { updateProduct } = require("../../controllers/products/updateProduct");
 const { deleteProduct } = require("../../controllers/products/deleteProduct");
+const {
+  placeOrder,
+} = require("../../controllers/products/sendOrderController");
 
 const {
   getProductById,
@@ -20,6 +23,9 @@ router.post("/", addProduct);
 // Роут для оновлення продукту
 router.patch("/:productId", updateProduct);
 // Роут для видалення продукту
-router.delete('/:productId', deleteProduct);
+router.delete("/:productId", deleteProduct);
+
+// Роут для відправки замовлення
+router.post("/order", placeOrder);
 
 module.exports = router;
