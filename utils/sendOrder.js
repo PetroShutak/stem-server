@@ -5,6 +5,7 @@ sgMail.setApiKey(SENDGRID_API_KEY);
 
 const sendOrder = async (data) => {
   const { name, phone, payment, delivery, deliveryAddress, postOffice } = data;
+  //   console.log('Received order data:', data);
 
   let deliveryInfo = "";
   if (delivery === "courier") {
@@ -29,7 +30,7 @@ const sendOrder = async (data) => {
     await sgMail.send(msg);
   } catch (error) {
     console.log(error);
-    throw error; 
+    throw error;
   }
 };
 
