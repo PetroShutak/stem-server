@@ -25,7 +25,7 @@ const login = async (req, res) => {
 
   const filteredUser = {
     email: user.email,
-    subscription: user.subscription,
+    name: user.name,
   };
 
   const payload = {
