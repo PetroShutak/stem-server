@@ -7,7 +7,7 @@ const { BASE_URL } = process.env;
 const crypto = require("crypto");
 
 const register = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { email, password } = req.body;
 
   const user = await User.findOne({ email });
 
