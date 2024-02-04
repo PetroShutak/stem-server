@@ -19,8 +19,7 @@ const register = async (req, res) => {
   const avatarURL = gravatar.url(email);
   const verificationToken = crypto.randomBytes(16).toString("hex");
   const newUser = await User.create({
-    email,
-    name,
+    ...req.body,
     password: hashPassword,
     avatarURL,
     verificationToken,
