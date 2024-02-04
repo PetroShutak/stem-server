@@ -19,7 +19,8 @@ const register = async (req, res) => {
   const avatarURL = gravatar.url(email);
   const verificationToken = crypto.randomBytes(16).toString("hex");
   const newUser = await User.create({
-    ...req.body,
+    email,
+    name,
     password: hashPassword,
     avatarURL,
     verificationToken,
@@ -28,7 +29,7 @@ const register = async (req, res) => {
   const verifyEmail = {
     to: email,
     subject: "Verify email",
-    html: `<a target ="_blank" href="${BASE_URL}/api/users/verify/${verificationToken}">Click to verify email</a>`,
+    html: `<a target ="_blank" href="${BASE_URL}/api/users/verify/${verificationToken}">Клікніть для підтвердження реєстрації</a>`,
   };
 
   await sendEmail(verifyEmail);
