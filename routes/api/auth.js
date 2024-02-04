@@ -23,6 +23,8 @@ router.post("/login", validateBody(schemas.registerLoginSchema), ctrl.login);
 
 router.get("/current", authenticate, ctrl.getCurrent);
 
+router.get("/profile", authenticate, ctrl.getProfile);
+
 router.post("/logout", authenticate, ctrl.logout);
 
 router.patch(
