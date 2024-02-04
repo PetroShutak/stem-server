@@ -7,9 +7,9 @@ const { BASE_URL } = process.env;
 const crypto = require("crypto");
 
 const register = async (req, res) => {
-  const { email, password } = req.body;
+  const {name, email, password } = req.body;
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email, name });
 
   if (user) {
     throw HttpError(409, "Email already in use");
@@ -19,7 +19,8 @@ const register = async (req, res) => {
   const avatarURL = gravatar.url(email);
   const verificationToken = crypto.randomBytes(16).toString("hex");
   const newUser = await User.create({
-    ...req.body,
+    name,
+    email,
     password: hashPassword,
     avatarURL,
     verificationToken,
