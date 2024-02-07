@@ -12,7 +12,7 @@ const register = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (user) {
-    throw HttpError(409, "Email already in use");
+    throw HttpError(409, "Ця пошта вже зареєстрована");
   }
 
   const hashPassword = await bcrypt.hash(password, 10);
@@ -28,8 +28,10 @@ const register = async (req, res) => {
 
   const verifyEmail = {
     to: email,
-    subject: "Verify email",
-    html: `<a target ="_blank" href="${BASE_URL}/api/users/verify/${verificationToken}">Клікніть для підтвердження реєстрації</a>`,
+    subject: "Підтвердження реєстрації.СтЕМ.Сантехнак твого міста",
+    html: `<h2>Вітаємо вас на нашому сайті</h2>
+    <p>Для підтвердження реєстрації перейдіть за посиланням</p>
+    <a target ="_blank" href="${BASE_URL}/api/users/verify/${verificationToken}">Клікніть для підтвердження реєстрації</a>`,
   };
 
   await sendEmail(verifyEmail);
