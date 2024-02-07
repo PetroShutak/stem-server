@@ -21,6 +21,8 @@ router.get("/verify/:verificationToken", ctrl.verifyEmail);
 
 router.post("/login", validateBody(schemas.registerLoginSchema), ctrl.login);
 
+router.post("/forgot-password", ctrl.resetPassword);
+
 router.get("/current", authenticate, ctrl.getCurrent);
 
 router.get("/profile", authenticate, ctrl.getProfile);

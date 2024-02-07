@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 
-const { handleMongooseError } = require("../utils/handleMongooseError");
+const handleMongooseError = require("../utils/handleMongooseError");
 
 const emailRegexp =
   /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -36,15 +36,14 @@ const userSchema = new Schema(
     },
     verificationToken: {
       type: String,
-      required: [true, "Verify token is required"],
+      default: null,
+      required: false, 
     },
   },
   { versionKey: false, timestamp: true }
 );
 
-userSchema.post("save", function (error, doc, next) {
-  handleMongooseError(error, next);
-});
+userSchema.post("save", handleMongooseError);
 const emailSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required().messages({
     "string.pattern.base": `missing required field email`,
