@@ -47,7 +47,7 @@ const verifyEmail = async (req, res) => {
     <body>
       <h1>Ваша пошта успішно підтверджена!</h1>
       <p>Тепер ви можете увійти на сайт за допомогою свого акаунту.</p>
-      <a href="https://petroshutak.github.io/StEM/login">Перейти до форми входу</a>
+      <a href="https://petroshutak.github.io/StEM/">Перейти на сайт</a>
     </body>
   </html>
   
