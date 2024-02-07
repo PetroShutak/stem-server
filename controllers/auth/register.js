@@ -28,7 +28,7 @@ const register = async (req, res) => {
 
   const verifyEmail = {
     to: email,
-    subject: "Підтвердження реєстрації.СтЕМ.Сантехнак твого міста",
+    subject: "Підтвердження реєстрації.СтЕМ.Сантехніка твого міста",
     html: `<h2>Вітаємо вас на нашому сайті</h2>
     <p>Для підтвердження реєстрації перейдіть за посиланням</p>
     <a target ="_blank" href="${BASE_URL}/api/users/verify/${verificationToken}">Клікніть для підтвердження реєстрації</a>`,
