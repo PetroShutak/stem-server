@@ -9,8 +9,15 @@ const productRouter = require("./routes/api/products");
 const authRouter = require("./routes/api/auth");
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
+const corsOptions = {
+  origin: "https://stem-server-db.onrender.com",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
 app.use(logger(formatsLogger));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public", { maxAge: "31536000" }));
